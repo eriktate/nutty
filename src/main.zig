@@ -1,5 +1,6 @@
 const std = @import("std");
 const c = @import("c.zig");
+const window = @import("window.zig");
 const fs = std.fs;
 const os = std.os;
 
@@ -31,6 +32,9 @@ fn create_pty() anyerror!Pty {
 }
 
 pub fn main() anyerror!void {
+    const win = try window.Window.init(540, 480, "nutty - float");
+    defer win.close();
+
     const pty = try create_pty();
     defer pty.fd.close();
 
