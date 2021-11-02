@@ -1,8 +1,8 @@
 const std = @import("std");
 
 const freetype_path = "./vendor/freetype/build/";
-const glfw_lib = "./vendor/glfw/build/src";
-const glfw_include = "./vendor/glfw/include";
+const glfw_path = "./vendor/glfw/";
+const epoxy_path = "./vendor/libepoxy/";
 
 pub fn build(b: *std.build.Builder) void {
     // Standard target options allows the person running `zig build` to choose
@@ -24,11 +24,16 @@ pub fn build(b: *std.build.Builder) void {
     exe.addLibPath(freetype_path ++ "lib");
 
     // Find GLFW
-    exe.addIncludeDir(glfw_include);
-    exe.addLibPath(glfw_lib);
+    exe.addIncludeDir(glfw_path ++ "include");
+    exe.addLibPath(glfw_path ++ "build/src");
+
+    // Find epoxy
+    exe.addIncludeDir(epoxy_path ++ "include");
+    exe.addLibPath(epoxy_path ++ "_build/src");
 
     exe.linkSystemLibrary("freetype");
-    exe.linkSysteLibrary("glfw");
+    exe.linkSystemLibrary("glfw");
+    exe.linkSystemLibrary("epoxy");
     exe.linkLibC();
 
     exe.install();

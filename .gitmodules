@@ -4,3 +4,7 @@
 [submodule "vendor/glfw"]
 	path = vendor/glfw
 	url = https://github.com/glfw/glfw.git
+[submodule "vendor/libepoxy"]
+	path = vendor/libepoxy
+	url = https://github.com/anholt/libepoxy
+	ignore = dirty

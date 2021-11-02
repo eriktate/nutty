@@ -1,2 +1,4 @@
 zig-cache/
 zig-out/
+vendor/**/_build/
+vendor/**/build/
