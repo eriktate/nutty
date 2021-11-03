@@ -3,4 +3,5 @@ pub usingnamespace @cImport({
     @cInclude("utmp.h");
     @cInclude("epoxy/gl.h");
     @cInclude("GLFW/glfw3.h");
+    @cInclude("freetype.h");
 });

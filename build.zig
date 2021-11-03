@@ -19,8 +19,11 @@ pub fn build(b: *std.build.Builder) void {
     exe.setTarget(target);
     exe.setBuildMode(mode);
 
+    // Include our include dir (needed for some weird vendored lib patterns)
+    exe.addIncludeDir("./include");
+
     // Find freetype
-    exe.addIncludeDir(freetype_path ++ "include");
+    exe.addIncludeDir(freetype_path ++ "include/freetype2");
     exe.addLibPath(freetype_path ++ "lib");
 
     // Find GLFW
