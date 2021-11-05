@@ -35,6 +35,9 @@ pub const Window = struct {
         c.glfwMakeContextCurrent(window.win);
         c.glViewport(0, 0, width, height);
 
+        c.glClearColor(0, 0, 0, 1);
+        c.glClear(c.GL_COLOR_BUFFER_BIT);
+        c.glfwSwapBuffers(window.win);
         return window;
     }
 
