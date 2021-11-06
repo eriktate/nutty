@@ -1,3 +1,5 @@
+const std = @import("std");
+const print = std.debug.print;
 const c = @import("c.zig");
 
 const FontError = error{
@@ -52,7 +54,20 @@ pub const Font = struct {
         }
 
         const bitmap = self.face.*.glyph.*.bitmap;
+        print("Gray mode: {d}\n", .{c.FT_PIXEL_MODE_GRAY});
+        print("Pixel mode: {d}\n", .{bitmap.pixel_mode});
+        print("Pixel width: {d}\n", .{bitmap.width});
+        print("Pixel height: {d}\n", .{bitmap.rows});
+        print("Pixel count: {d}\n", .{bitmap.rows * bitmap.width});
+        var idx: usize = 0;
         const byte_count = @intCast(c_uint, bitmap.pitch) * bitmap.rows;
+        while (idx < byte_count) {
+            print("{d}", .{bitmap.buffer[idx]});
+            idx += 1;
+            if (idx % bitmap.width == 0) {
+                print("\n", .{});
+            }
+        }
 
         return bitmap.buffer[0..byte_count];
     }
